@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>U.S. Data Power - Boleta Servicio UPS</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#eef1f4;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#17212b;
+}
+
+.page{
+  max-width:1100px;
+  margin:20px auto;
+  background:#fff;
+  padding:28px;
+  box-shadow:0 2px 12px rgba(0,0,0,.12);
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  border-bottom:3px solid #b51f24;
+  padding-bottom:15px;
+  margin-bottom:18px;
+}
+
+.brand h1{
+  margin:0;
+  font-size:27px;
+}
+
+.brand h2{
+  margin:5px 0 0;
+  font-size:17px;
+  font-weight:500;
+}
+
+.boleta{
+  text-align:right;
+}
+
+.boleta strong{
+  display:block;
+  color:#b51f24;
+  font-size:22px;
+}
+
+.boleta span{
+  font-size:12px;
+  color:#666;
+}
+
+.section{
+  border:1px solid #cfd5da;
+  margin:14px 0;
+  border-radius:5px;
+  overflow:hidden;
+}
+
+.section-title{
+  background:#273746;
+  color:white;
+  padding:8px 12px;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.content{
+  padding:12px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.grid-2{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+label{
+  display:block;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:3px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:8px;
+  border:1px solid #adb5bd;
+  border-radius:4px;
+  font-size:14px;
+}
+
+textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+.checks{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+.checks label{
+  font-weight:normal;
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.checks input{
+  width:auto;
+}
+
+.signature{
+  border:1px solid #aaa;
+  width:100%;
+  height:150px;
+  touch-action:none;
+  background:white;
+}
+
+.sig-buttons{
+  margin-top:5px;
+}
+
+button{
+  border:0;
+  border-radius:5px;
+  padding:11px 18px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.primary{
+  background:#b51f24;
+  color:white;
+}
+
+.secondary{
+  background:#273746;
+  color:white;
+}
+
+.light{
+  background:#e4e7ea;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+
+.status{
+  margin-top:12px;
+  padding:10px;
+  display:none;
+  border-radius:4px;
+}
+
+.status.ok{
+  display:block;
+  background:#dff2e3;
+  color:#145c25;
+}
+
+.status.error{
+  display:block;
+  background:#f7dddd;
+  color:#8b1111;
+}
+
+.small{
+  font-size:11px;
+  color:#666;
+}
+
+@media(max-width:800px){
+  .grid,.grid-3,.grid-2{
+    grid-template-columns:1fr;
+  }
+
+  header{
+    flex-direction:column;
+  }
+
+  .boleta{
+    text-align:left;
+    margin-top:12px;
+  }
+}
+
+@media print{
+  body{background:white}
+  .page{
+    margin:0;
+    box-shadow:none;
+    max-width:none;
+  }
+  .no-print{display:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<header>
+
+<div class="brand">
+  <h1>U.S. DATA POWER</h1>
+  <h2>Boleta de Servicio Técnico – UPS</h2>
+  <div class="small">
+    Sistemas de energía ininterrumpida
+  </div>
+</div>
+
+<div class="boleta">
+  <strong id="numeroVisual">UPS-1001</strong>
+  <span>Número oficial asignado al guardar</span>
+</div>
+
+</header>
+
+
+<div class="section">
+<div class="section-title">TIPO DE SERVICIO</div>
+<div class="content checks">
+
+<label><input type="checkbox" name="tipo" value="Preventivo"> Preventivo</label>
+<label><input type="checkbox" name="tipo" value="Correctivo"> Correctivo</label>
+<label><input type="checkbox" name="tipo" value="Diagnóstico"> Diagnóstico</label>
+<label><input type="checkbox" name="tipo" value="Emergencia"> Emergencia</label>
+<label><input type="checkbox" name="tipo" value="Puesta en marcha"> Puesta en marcha</label>
+<label><input type="checkbox" name="tipo" value="Cambio de baterías"> Cambio de baterías</label>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">DATOS DEL SERVICIO</div>
+<div class="content grid">
+
+<div>
+<label>Fecha</label>
+<input id="fecha" type="date">
+</div>
+
+<div>
+<label>Hora inicio</label>
+<input id="horaInicio" type="time">
+</div>
+
+<div>
+<label>Hora salida</label>
+<input id="horaSalida" type="time">
+</div>
+
+<div>
+<label>Referencia / Orden</label>
+<input id="idRef">
+</div>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">CLIENTE</div>
+<div class="content grid-2">
+
+<div>
+<label>Cliente / Empresa</label>
+<input id="clienteNombre">
+</div>
+
+<div>
+<label>Ubicación</label>
+<input id="clienteUbicacion">
+</div>
+
+<div>
+<label>Contacto</label>
+<input id="clienteContacto">
+</div>
+
+<div>
+<label>Teléfono / Correo</label>
+<input id="clienteTelefono">
+</div>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">IDENTIFICACIÓN DEL UPS</div>
+<div class="content grid">
+
+<div>
+<label>Marca</label>
+<input id="upsMarca">
+</div>
+
+<div>
+<label>Modelo</label>
+<input id="upsModelo">
+</div>
+
+<div>
+<label>Número de serie</label>
+<input id="upsSerie">
+</div>
+
+<div>
+<label>Potencia kVA</label>
+<input id="upsKva">
+</div>
+
+<div>
+<label>Potencia kW</label>
+<input id="upsKw">
+</div>
+
+<div>
+<label>Topología</label>
+<select id="upsTopologia">
+<option value=""></option>
+<option>Online doble conversión</option>
+<option>Line Interactive</option>
+<option>Standby / Offline</option>
+<option>Otra</option>
+</select>
+</div>
+
+<div>
+<label>Configuración</label>
+<select id="upsFases">
+<option value=""></option>
+<option>Monofásico</option>
+<option>Trifásico</option>
+<option>Trifásico / Monofásico</option>
+</select>
+</div>
+
+<div>
+<label>Frecuencia nominal</label>
+<input id="upsFrecuencia" placeholder="Hz">
+</div>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">MEDICIONES DE ENTRADA</div>
+<div class="content grid">
+
+<div><label>L1-N (V)</label><input id="inL1N"></div>
+<div><label>L2-N (V)</label><input id="inL2N"></div>
+<div><label>L3-N (V)</label><input id="inL3N"></div>
+<div><label>Frecuencia (Hz)</label><input id="inHz"></div>
+
+<div><label>L1-L2 (V)</label><input id="inL1L2"></div>
+<div><label>L2-L3 (V)</label><input id="inL2L3"></div>
+<div><label>L3-L1 (V)</label><input id="inL3L1"></div>
+<div><label>Neutro-Tierra (V)</label><input id="inNG"></div>
+
+<div><label>Corriente L1 (A)</label><input id="inA1"></div>
+<div><label>Corriente L2 (A)</label><input id="inA2"></div>
+<div><label>Corriente L3 (A)</label><input id="inA3"></div>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">MEDICIONES DE SALIDA</div>
+<div class="content grid">
+
+<div><label>L1-N (V)</label><input id="outL1N"></div>
+<div><label>L2-N (V)</label><input id="outL2N"></div>
+<div><label>L3-N (V)</label><input id="outL3N"></div>
+<div><label>Frecuencia (Hz)</label><input id="outHz"></div>
+
+<div><label>L1-L2 (V)</label><input id="outL1L2"></div>
+<div><label>L2-L3 (V)</label><input id="outL2L3"></div>
+<div><label>L3-L1 (V)</label><input id="outL3L1"></div>
+<div><label>Neutro-Tierra (V)</label><input id="outNG"></div>
+
+<div><label>Corriente L1 (A)</label><input id="outA1"></div>
+<div><label>Corriente L2 (A)</label><input id="outA2"></div>
+<div><label>Corriente L3 (A)</label><input id="outA3"></div>
+<div><label>Carga UPS (%)</label><input id="outCarga"></div>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">BANCO DE BATERÍAS</div>
+<div class="content grid">
+
+<div><label>Cantidad</label><input id="batCantidad" type="number"></div>
+<div><label>Marca</label><input id="batMarca"></div>
+<div><label>Modelo</label><input id="batModelo"></div>
+<div><label>Capacidad (Ah)</label><input id="batAh"></div>
+
+<div><label>Voltaje nominal batería</label><input id="batVoltNom"></div>
+<div><label>Voltaje total banco (VDC)</label><input id="batVoltTotal"></div>
+<div><label>Temperatura (°C)</label><input id="batTemp"></div>
+<div><label>Autonomía estimada</label><input id="batAutonomia"></div>
+
+<div>
+<label>Estado general</label>
+<select id="batEstado">
+<option value=""></option>
+<option>Bueno</option>
+<option>Regular</option>
+<option>Requiere cambio</option>
+<option>Crítico</option>
+</select>
+</div>
+
+<div>
+<label>Fecha instalación</label>
+<input id="batFecha" type="date">
+</div>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">ESTADO INTERNO DEL UPS</div>
+<div class="content grid">
+
+<div><label>Bus DC (VDC)</label><input id="estadoBus"></div>
+
+<div>
+<label>Rectificador</label>
+<select id="estadoRectificador">
+<option value=""></option>
+<option>Normal</option>
+<option>Alarma</option>
+<option>No probado</option>
+</select>
+</div>
+
+<div>
+<label>Inversor</label>
+<select id="estadoInversor">
+<option value=""></option>
+<option>Normal</option>
+<option>Alarma</option>
+<option>No probado</option>
+</select>
+</div>
+
+<div>
+<label>Bypass</label>
+<select id="estadoBypass">
+<option value=""></option>
+<option>Normal</option>
+<option>Alarma</option>
+<option>No probado</option>
+</select>
+</div>
+
+<div>
+<label>Cargador</label>
+<select id="estadoCargador">
+<option value=""></option>
+<option>Normal</option>
+<option>Alarma</option>
+<option>No probado</option>
+</select>
+</div>
+
+<div>
+<label>Ventiladores</label>
+<select id="estadoFans">
+<option value=""></option>
+<option>Normal</option>
+<option>Requiere atención</option>
+<option>No probado</option>
+</select>
+</div>
+
+<div><label>Temperatura interna °C</label><input id="estadoTemp"></div>
+<div><label>Alarmas activas</label><input id="estadoAlarmas"></div>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">PRUEBAS FUNCIONALES</div>
+<div class="content grid-3">
+
+<div>
+<label>Transferencia a batería</label>
+<select id="pruebaBateria">
+<option value=""></option>
+<option>Correcta</option>
+<option>Falla</option>
+<option>No realizada</option>
+</select>
+</div>
+
+<div>
+<label>Retorno a red</label>
+<select id="pruebaRed">
+<option value=""></option>
+<option>Correcto</option>
+<option>Falla</option>
+<option>No realizado</option>
+</select>
+</div>
+
+<div>
+<label>Bypass</label>
+<select id="pruebaBypass">
+<option value=""></option>
+<option>Correcto</option>
+<option>Falla</option>
+<option>No realizado</option>
+</select>
+</div>
+
+<div>
+<label>Prueba de autonomía</label>
+<select id="pruebaAutonomia">
+<option value=""></option>
+<option>Satisfactoria</option>
+<option>Insuficiente</option>
+<option>No realizada</option>
+</select>
+</div>
+
+<div>
+<label>Alarmas</label>
+<select id="pruebaAlarmas">
+<option value=""></option>
+<option>Correctas</option>
+<option>Falla</option>
+<option>No realizada</option>
+</select>
+</div>
+
+<div>
+<label>EPO</label>
+<select id="pruebaEpo">
+<option value=""></option>
+<option>Correcto</option>
+<option>Falla</option>
+<option>No realizado</option>
+<option>No aplica</option>
+</select>
+</div>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">TRABAJO REALIZADO</div>
+<div class="content">
+
+<label>Servicio realizado</label>
+<textarea id="servicio"></textarea>
+
+<label>Repuestos / materiales utilizados</label>
+<textarea id="repuestos"></textarea>
+
+<label>Recomendaciones</label>
+<textarea id="recomendaciones"></textarea>
+
+<label>Observaciones</label>
+<textarea id="observaciones"></textarea>
+
+</div>
+</div>
+
+
+<div class="section no-print">
+<div class="section-title">FOTOGRAFÍAS</div>
+<div class="content">
+
+<input
+  id="fotos"
+  type="file"
+  accept="image/*"
+  multiple
+>
+
+<p class="small">
+Las fotografías se almacenarán en Google Drive asociadas a la boleta.
+</p>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">SATISFACCIÓN DEL CLIENTE</div>
+<div class="content">
+
+<select id="satisfaccion">
+<option value=""></option>
+<option>Excelente</option>
+<option>Muy bueno</option>
+<option>Bueno</option>
+<option>Regular</option>
+<option>Insatisfecho</option>
+</select>
+
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">FIRMAS</div>
+
+<div class="content grid-2">
+
+<div>
+<label>Firma del técnico</label>
+<canvas id="firmaTec" class="signature"></canvas>
+
+<div class="sig-buttons no-print">
+<button class="light" type="button" onclick="limpiarFirma('firmaTec')">
+Limpiar
+</button>
+</div>
+</div>
+
+<div>
+<label>Firma del cliente</label>
+<canvas id="firmaCli" class="signature"></canvas>
+
+<div class="sig-buttons no-print">
+<button class="light" type="button" onclick="limpiarFirma('firmaCli')">
+Limpiar
+</button>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="section no-print">
+<div class="section-title">AUTORIZACIÓN</div>
+
+<div class="content">
+
+<label>PIN</label>
+<input
+  id="pin"
+  type="password"
+  autocomplete="off"
+  placeholder="PIN"
+>
+
+</div>
+</div>
+
+
+<div class="actions no-print">
+
+<button
+  class="primary"
+  type="button"
+  id="btnGuardar"
+  onclick="guardar()">
+  Guardar en Google Sheets
+</button>
+
+<button
+  class="secondary"
+  type="button"
+  onclick="window.print()">
+  Guardar / Imprimir PDF
+</button>
+
+<button
+  class="light"
+  type="button"
+  onclick="nuevaBoleta()">
+  Nueva boleta
+</button>
+
+</div>
+
+<div id="status" class="status"></div>
+
+</div>
+
+
+<script>
+
+const GAS_URL =
+'https://script.google.com/macros/s/AKfycbwq6oLABIKyGEHWDPSluuYjEpz_t4bOZpEXAdTdDK3Hwh3mDNuyD3WWJvWGTSHSYkVaVg/exec';
+
+
+function valor(id){
+  return document.getElementById(id).value;
+}
+
+
+function tiposSeleccionados(){
+
+  return Array.from(
+    document.querySelectorAll(
+      'input[name="tipo"]:checked'
+    )
+  ).map(x => x.value);
+
+}
+
+
+function prepararCanvas(id){
+
+  const canvas =
+    document.getElementById(id);
+
+  const ctx =
+    canvas.getContext('2d');
+
+  function ajustar(){
+
+    const data =
+      canvas.toDataURL();
+
+    canvas.width =
+      canvas.clientWidth;
+
+    canvas.height =
+      canvas.clientHeight;
+
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+
+  }
+
+  ajustar();
+
+  let dibujando = false;
+
+  function posicion(e){
+
+    const rect =
+      canvas.getBoundingClientRect();
+
+    const p =
+      e.touches
+        ? e.touches[0]
+        : e;
+
+    return {
+      x: p.clientX - rect.left,
+      y: p.clientY - rect.top
+    };
+
+  }
+
+  function inicio(e){
+
+    e.preventDefault();
+
+    dibujando = true;
+
+    const p = posicion(e);
+
+    ctx.beginPath();
+    ctx.moveTo(p.x,p.y);
+
+  }
+
+  function mover(e){
+
+    if(!dibujando) return;
+
+    e.preventDefault();
+
+    const p = posicion(e);
+
+    ctx.lineTo(p.x,p.y);
+    ctx.stroke();
+
+  }
+
+  function fin(){
+
+    dibujando = false;
+
+  }
+
+  canvas.addEventListener(
+    'mousedown',
+    inicio
+  );
+
+  canvas.addEventListener(
+    'mousemove',
+    mover
+  );
+
+  window.addEventListener(
+    'mouseup',
+    fin
+  );
+
+  canvas.addEventListener(
+    'touchstart',
+    inicio,
+    {passive:false}
+  );
+
+  canvas.addEventListener(
+    'touchmove',
+    mover,
+    {passive:false}
+  );
+
+  canvas.addEventListener(
+    'touchend',
+    fin
+  );
+
+}
+
+
+function limpiarFirma(id){
+
+  const c =
+    document.getElementById(id);
+
+  c.getContext('2d')
+    .clearRect(
+      0,
+      0,
+      c.width,
+      c.height
+    );
+
+}
+
+
+function canvasVacio(canvas){
+
+  const blank =
+    document.createElement('canvas');
+
+  blank.width =
+    canvas.width;
+
+  blank.height =
+    canvas.height;
+
+  return canvas.toDataURL() ===
+         blank.toDataURL();
+
+}
+
+
+function firmaData(id){
+
+  const c =
+    document.getElementById(id);
+
+  if(canvasVacio(c)){
+    return '';
+  }
+
+  return c.toDataURL('image/png');
+
+}
+
+
+function archivoDataURL(file){
+
+  return new Promise(
+    (resolve,reject) => {
+
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        () => resolve(
+          reader.result
+        );
+
+      reader.onerror =
+        reject;
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+}
+
+
+async function guardar(){
+
+  const boton =
+    document.getElementById(
+      'btnGuardar'
+    );
+
+  const status =
+    document.getElementById(
+      'status'
+    );
+
+  const pin =
+    valor('pin');
+
+  if(!pin){
+
+    status.className =
+      'status error';
+
+    status.textContent =
+      'Ingrese el PIN para guardar.';
+
+    return;
+  }
+
+  boton.disabled = true;
+
+  status.className =
+    'status';
+
+  status.style.display =
+    'block';
+
+  status.textContent =
+    'Guardando boleta UPS...';
+
+
+  try{
+
+    const files =
+      Array.from(
+        document.getElementById(
+          'fotos'
+        ).files
+      );
+
+    const fotos = [];
+
+    for(let i=0;i<files.length;i++){
+
+      const dataUrl =
+        await archivoDataURL(
+          files[i]
+        );
+
+      fotos.push({
+        name:files[i].name,
+        dataUrl:dataUrl
+      });
+
+    }
+
+
+    const payload = {
+
+      action:'saveUPS',
+
+      pin:pin,
+
+      fotos:fotos,
+
+      firmaTec:
+        firmaData('firmaTec'),
+
+      firmaCli:
+        firmaData('firmaCli'),
+
+      data:{
+
+        fecha:
+          valor('fecha'),
+
+        horaInicio:
+          valor('horaInicio'),
+
+        horaSalida:
+          valor('horaSalida'),
+
+        idRef:
+          valor('idRef'),
+
+        tipos:
+          tiposSeleccionados(),
+
+        cliente:{
+          nombre:
+            valor('clienteNombre'),
+          ubicacion:
+            valor('clienteUbicacion'),
+          contacto:
+            valor('clienteContacto'),
+          telefono:
+            valor('clienteTelefono')
+        },
+
+        ups:{
+          marca:
+            valor('upsMarca'),
+          modelo:
+            valor('upsModelo'),
+          serie:
+            valor('upsSerie'),
+          kva:
+            valor('upsKva'),
+          kw:
+            valor('upsKw'),
+          topologia:
+            valor('upsTopologia'),
+          fases:
+            valor('upsFases'),
+          frecuencia:
+            valor('upsFrecuencia')
+        },
+
+        entrada:{
+          l1n:valor('inL1N'),
+          l2n:valor('inL2N'),
+          l3n:valor('inL3N'),
+          hz:valor('inHz'),
+          l1l2:valor('inL1L2'),
+          l2l3:valor('inL2L3'),
+          l3l1:valor('inL3L1'),
+          ng:valor('inNG'),
+          a1:valor('inA1'),
+          a2:valor('inA2'),
+          a3:valor('inA3')
+        },
+
+        salida:{
+          l1n:valor('outL1N'),
+          l2n:valor('outL2N'),
+          l3n:valor('outL3N'),
+          hz:valor('outHz'),
+          l1l2:valor('outL1L2'),
+          l2l3:valor('outL2L3'),
+          l3l1:valor('outL3L1'),
+          ng:valor('outNG'),
+          a1:valor('outA1'),
+          a2:valor('outA2'),
+          a3:valor('outA3'),
+          carga:valor('outCarga')
+        },
+
+        baterias:{
+          cantidad:
+            valor('batCantidad'),
+          marca:
+            valor('batMarca'),
+          modelo:
+            valor('batModelo'),
+          ah:
+            valor('batAh'),
+          voltNom:
+            valor('batVoltNom'),
+          voltTotal:
+            valor('batVoltTotal'),
+          temperatura:
+            valor('batTemp'),
+          autonomia:
+            valor('batAutonomia'),
+          estado:
+            valor('batEstado'),
+          fecha:
+            valor('batFecha')
+        },
+
+        estadoUPS:{
+          bus:
+            valor('estadoBus'),
+          rectificador:
+            valor('estadoRectificador'),
+          inversor:
+            valor('estadoInversor'),
+          bypass:
+            valor('estadoBypass'),
+          cargador:
+            valor('estadoCargador'),
+          ventiladores:
+            valor('estadoFans'),
+          temperatura:
+            valor('estadoTemp'),
+          alarmas:
+            valor('estadoAlarmas')
+        },
+
+        pruebas:{
+          bateria:
+            valor('pruebaBateria'),
+          red:
+            valor('pruebaRed'),
+          bypass:
+            valor('pruebaBypass'),
+          autonomia:
+            valor('pruebaAutonomia'),
+          alarmas:
+            valor('pruebaAlarmas'),
+          epo:
+            valor('pruebaEpo')
+        },
+
+        servicio:
+          valor('servicio'),
+
+        repuestos:
+          valor('repuestos'),
+
+        recomendaciones:
+          valor('recomendaciones'),
+
+        observaciones:
+          valor('observaciones'),
+
+        satisfaccion:
+          valor('satisfaccion')
+
+      }
+
+    };
+
+
+    const response =
+      await fetch(
+        GAS_URL,
+        {
+          method:'POST',
+          body:JSON.stringify(payload)
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if(!result.ok){
+
+      throw new Error(
+        result.message ||
+        'No se pudo guardar.'
+      );
+
+    }
+
+
+    document.getElementById(
+      'numeroVisual'
+    ).textContent =
+      result.numero;
+
+
+    status.className =
+      'status ok';
+
+    status.textContent =
+      'Guardado correctamente. Boleta ' +
+      result.numero;
+
+
+  }catch(error){
+
+    status.className =
+      'status error';
+
+    status.textContent =
+      'Error: ' +
+      error.message;
+
+  }finally{
+
+    boton.disabled = false;
+
+  }
+
+}
+
+
+function nuevaBoleta(){
+
+  if(!confirm(
+    '¿Desea limpiar el formulario para una nueva boleta UPS?'
+  )){
+    return;
+  }
+
+  document
+    .querySelectorAll(
+      'input:not([type="checkbox"]), textarea'
+    )
+    .forEach(el => {
+
+      if(el.id !== 'fecha'){
+        el.value = '';
+      }
+
+    });
+
+  document
+    .querySelectorAll(
+      'input[type="checkbox"]'
+    )
+    .forEach(
+      el => el.checked = false
+    );
+
+  document
+    .querySelectorAll(
+      'select'
+    )
+    .forEach(
+      el => el.selectedIndex = 0
+    );
+
+  limpiarFirma('firmaTec');
+  limpiarFirma('firmaCli');
+
+  document.getElementById(
+    'numeroVisual'
+  ).textContent =
+    'SIGUIENTE UPS';
+
+  const status =
+    document.getElementById(
+      'status'
+    );
+
+  status.className =
+    'status';
+
+  status.style.display =
+    'none';
+
+}
+
+
+document.getElementById(
+  'fecha'
+).value =
+  new Date()
+    .toISOString()
+    .slice(0,10);
+
+
+prepararCanvas('firmaTec');
+prepararCanvas('firmaCli');
+
+</script>
+
+</body>
+</html>
