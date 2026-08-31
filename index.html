@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>U.S. Data Power – Boleta de Servicios Técnicos</title>
+  <style>
+    :root{
+      --ink:#172033; --muted:#667085; --line:#d0d5dd; --soft:#f8fafc;
+      --brand:#0b4f78; --accent:#0b7a75; --danger:#c62828;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:#eef2f6;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+    .wrap{max-width:1080px;margin:24px auto;padding:0 14px}
+    .card{background:#fff;border:1px solid #e4e7ec;border-radius:18px;box-shadow:0 6px 24px rgba(16,24,40,.08);overflow:hidden}
+    header{display:grid;grid-template-columns:120px 1fr 160px;gap:16px;align-items:center;padding:18px 22px;border-bottom:2px solid var(--brand)}
+    .logo{width:110px;height:72px;object-fit:contain}
+    h1{margin:0;font-size:22px;line-height:1.15}
+    .sub{color:var(--muted);font-size:13px;margin-top:5px}
+    .number{text-align:right}
+    .number b{display:block;color:var(--danger);font-size:30px}
+    main{padding:20px 22px}
+    .section{margin:0 0 18px}
+    .section h2{font-size:15px;margin:0 0 10px;color:var(--brand);text-transform:uppercase;letter-spacing:.04em}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
+    .f{grid-column:span 3}.f6{grid-column:span 6}.f4{grid-column:span 4}.f8{grid-column:span 8}.f12{grid-column:span 12}
+    label{display:block;font-size:12px;font-weight:700;margin-bottom:4px;color:#344054}
+    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-size:14px;background:#fff}
+    textarea{resize:vertical;min-height:86px}
+    .checks{display:flex;gap:14px;flex-wrap:wrap;padding:9px 10px;border:1px solid var(--line);border-radius:8px}
+    .checks label{font-weight:500;margin:0;display:flex;align-items:center;gap:5px}
+    .checks input{width:auto}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;padding:14px 22px;background:var(--soft);border-top:1px solid #e4e7ec}
+    button{border:0;border-radius:9px;padding:10px 14px;font-weight:700;cursor:pointer}
+    .primary{background:var(--brand);color:#fff}.secondary{background:#475467;color:#fff}.good{background:var(--accent);color:#fff}.light{background:#e4e7ec}
+    .status{font-size:13px;color:var(--muted);align-self:center}
+    .sig{border:1px solid var(--line);border-radius:10px;background:#fff}
+    canvas{display:block;width:100%;height:150px;touch-action:none}
+    .sigbar{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-top:1px solid #eee}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:8px}
+    .gallery img{width:100%;height:110px;object-fit:cover;border:1px solid #ddd;border-radius:8px}
+    .notice{background:#fff8e7;border:1px solid #f2d58a;border-radius:10px;padding:10px 12px;font-size:13px;margin-bottom:14px}
+    @media(max-width:760px){
+      header{grid-template-columns:80px 1fr}.number{grid-column:1/-1;text-align:left}.logo{width:75px;height:55px}
+      .f,.f4,.f6,.f8{grid-column:span 12}
+      main{padding:16px}.wrap{margin:8px auto}
+    }
+    @media print{
+      body{background:#fff}.wrap{margin:0;max-width:none;padding:0}.card{box-shadow:none;border:0}.actions,.notice,.no-print{display:none!important}
+      header{padding:10px 14px}main{padding:10px 14px}.section{margin-bottom:10px}
+      input,select,textarea,.checks{border-color:#aaa}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <header>
+      <img class="logo" id="logo" alt="U.S. Data Power" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Crect width='240' height='120' rx='12' fill='%230b4f78'/%3E%3Ctext x='120' y='52' text-anchor='middle' font-family='Arial' font-size='22' fill='white' font-weight='700'%3EUS DATA POWER%3C/text%3E%3Ctext x='120' y='80' text-anchor='middle' font-family='Arial' font-size='12' fill='white'%3ENo break energy · no lost data%3C/text%3E%3C/svg%3E"/>
+      <div>
+        <h1>U.S. Data Power – Boleta de Servicios Técnicos</h1>
+        <div class="sub">juancc@usdatapower.com · soporte@usdatapower.com</div>
+      </div>
+      <div class="number">Boleta No.<b id="boletaNumero">3333</b></div>
+    </header>
+
+    <main>
+      <div class="notice no-print">
+        Esta versión usa Google Sheets/Drive mediante Google Apps Script. Antes de publicarla, pega la URL del Web App en <b>GAS_URL</b> dentro de este archivo.
+      </div>
+
+      <section class="section">
+        <h2>Tipo de servicio</h2>
+        <div class="checks">
+          <label><input type="checkbox" name="tipo" value="Preventivo"> Preventivo</label>
+          <label><input type="checkbox" name="tipo" value="Correctivo"> Correctivo</label>
+          <label><input type="checkbox" name="tipo" value="Revisión/Diagnóstico"> Revisión/Diagnóstico</label>
+          <label><input type="checkbox" name="tipo" value="Visita de garantía"> Visita de garantía</label>
+          <label><input type="checkbox" name="tipo" value="Puesta en marcha"> Puesta en marcha</label>
+          <label><input type="checkbox" name="tipo" value="Avería"> Avería</label>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Datos del servicio</h2>
+        <div class="grid">
+          <div class="f"><label>Fecha</label><input id="fecha" type="date"></div>
+          <div class="f"><label>Hora inicio</label><input id="horaInicio" type="time"></div>
+          <div class="f"><label>Hora salida</label><input id="horaSalida" type="time"></div>
+          <div class="f"><label>Identificación de referencia</label><input id="idRef"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Cliente</h2>
+        <div class="grid">
+          <div class="f6"><label>Nombre / Empresa *</label><input id="clienteNombre" required></div>
+          <div class="f6"><label>Representante</label><input id="clienteRep"></div>
+          <div class="f4"><label>Teléfono(s)</label><input id="clienteTel"></div>
+          <div class="f4"><label>Correo</label><input id="clienteCorreo" type="email"></div>
+          <div class="f4"><label>Dirección</label><input id="clienteDir"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Equipo</h2>
+        <div class="grid">
+          <div class="f4"><label>Marca evaporador</label><input id="marcaEvap"></div>
+          <div class="f4"><label>Modelo evaporador</label><input id="modeloEvap"></div>
+          <div class="f4"><label>Serie evaporador</label><input id="serieEvap"></div>
+          <div class="f4"><label>Ubicación condensador</label><input id="ubiCond"></div>
+          <div class="f4"><label>Marca condensador</label><input id="marcaCond"></div>
+          <div class="f4"><label>Modelo condensador</label><input id="modeloCond"></div>
+          <div class="f4"><label>Serie condensador</label><input id="serieCond"></div>
+          <div class="f4"><label>Capacidad (BTU/h o TR)</label><input id="capacidad"></div>
+          <div class="f4"><label>Refrigerante</label>
+            <select id="refrigerante"><option></option><option>R134a</option><option>R407C</option><option>R410A</option><option>R32</option><option>Otro</option></select>
+          </div>
+          <div class="f4"><label>Cantidad refrigerante (kg)</label><input id="cantRef"></div>
+          <div class="f4"><label>Bomba de condensado</label>
+            <select id="bomba"><option></option><option>Gravedad</option><option>Con bomba</option></select>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Mediciones</h2>
+        <div class="grid">
+          <div class="f"><label>L1 (A)</label><input id="L1A"></div>
+          <div class="f"><label>L2 (A)</label><input id="L2A"></div>
+          <div class="f"><label>L3 (A)</label><input id="L3A"></div>
+          <div class="f"><label>Placa (A)</label><input id="PlacaA"></div>
+          <div class="f"><label>Presión alta (psi)</label><input id="PAlta"></div>
+          <div class="f"><label>Presión baja (psi)</label><input id="PBaja"></div>
+          <div class="f"><label>Temp. suministro (°C)</label><input id="TSum"></div>
+          <div class="f"><label>Temp. retorno (°C)</label><input id="TRet"></div>
+          <div class="f"><label>Voltaje L1-L2</label><input id="V12"></div>
+          <div class="f"><label>Voltaje L2-L3</label><input id="V23"></div>
+          <div class="f"><label>Voltaje L1-L3</label><input id="V13"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Trabajo realizado</h2>
+        <div class="grid">
+          <div class="f12"><label>Servicio realizado *</label><textarea id="servicioRealizado"></textarea></div>
+          <div class="f12"><label>Observaciones y pendientes</label><textarea id="observaciones"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Fotografías</h2>
+        <input class="no-print" id="fotos" type="file" accept="image/*" capture="environment" multiple>
+        <div id="galeria" class="gallery"></div>
+      </section>
+
+      <section class="section">
+        <h2>Satisfacción del cliente</h2>
+        <div class="checks">
+          <label><input type="radio" name="satisfaccion" value="Excelente"> Excelente</label>
+          <label><input type="radio" name="satisfaccion" value="Muy bueno"> Muy bueno</label>
+          <label><input type="radio" name="satisfaccion" value="Aceptable"> Aceptable</label>
+          <label><input type="radio" name="satisfaccion" value="Deficiente"> Deficiente</label>
+          <label><input type="radio" name="satisfaccion" value="Pésimo"> Pésimo</label>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Firmas</h2>
+        <div class="grid">
+          <div class="f6">
+            <label>Firma del técnico</label>
+            <div class="sig"><canvas id="firmaTec" width="700" height="220"></canvas><div class="sigbar no-print"><span></span><button class="light" type="button" onclick="clearSig('firmaTec')">Limpiar</button></div></div>
+          </div>
+          <div class="f6">
+            <label>Firma del cliente</label>
+            <div class="sig"><canvas id="firmaCli" width="700" height="220"></canvas><div class="sigbar no-print"><span></span><button class="light" type="button" onclick="clearSig('firmaCli')">Limpiar</button></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section no-print">
+        <h2>Acceso de técnico</h2>
+        <div class="grid">
+          <div class="f6"><label>PIN de guardado</label><input id="pin" type="password" autocomplete="off" placeholder="PIN configurado en Apps Script"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="actions no-print">
+      <button class="primary" id="guardar">Guardar en Google Sheets</button>
+      <button class="secondary" onclick="window.print()">Guardar / Imprimir PDF</button>
+      <button class="light" id="nueva">Nueva boleta</button>
+      <span id="estado" class="status"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Pega aquí la URL de tu implementación de Google Apps Script:
+  const GAS_URL = 'PEGAR_AQUI_URL_WEB_APP';
+
+  const $ = id => document.getElementById(id);
+  const val = id => ($(id)?.value || '').trim();
+
+  $('fecha').value = new Date().toISOString().slice(0,10);
+
+  function setupSignature(id){
+    const c=$(id), ctx=c.getContext('2d'); ctx.lineWidth=2; ctx.lineCap='round';
+    let down=false, last=null;
+    const p=e=>{
+      const r=c.getBoundingClientRect(), t=e.touches?.[0]||e;
+      return {x:(t.clientX-r.left)*(c.width/r.width),y:(t.clientY-r.top)*(c.height/r.height)};
+    };
+    const start=e=>{e.preventDefault();down=true;last=p(e)};
+    const move=e=>{if(!down)return;e.preventDefault();const q=p(e);ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(q.x,q.y);ctx.stroke();last=q};
+    const end=()=>{down=false;last=null};
+    c.addEventListener('pointerdown',start); c.addEventListener('pointermove',move);
+    window.addEventListener('pointerup',end);
+    c.addEventListener('touchstart',start,{passive:false}); c.addEventListener('touchmove',move,{passive:false}); c.addEventListener('touchend',end);
+  }
+  setupSignature('firmaTec'); setupSignature('firmaCli');
+  window.clearSig=id=>{const c=$(id);c.getContext('2d').clearRect(0,0,c.width,c.height)};
+
+  $('fotos').addEventListener('change',()=>{
+    $('galeria').innerHTML='';
+    [...$('fotos').files].forEach(f=>{
+      const img=document.createElement('img'); img.src=URL.createObjectURL(f); $('galeria').appendChild(img);
+    });
+  });
+
+  function toDataURL(file,max=1600,q=.78){
+    return new Promise((resolve,reject)=>{
+      const rd=new FileReader();
+      rd.onload=()=>{
+        const img=new Image();
+        img.onload=()=>{
+          let w=img.width,h=img.height;
+          if(Math.max(w,h)>max){const s=max/Math.max(w,h);w=Math.round(w*s);h=Math.round(h*s)}
+          const c=document.createElement('canvas');c.width=w;c.height=h;
+          c.getContext('2d').drawImage(img,0,0,w,h);
+          resolve(c.toDataURL('image/jpeg',q));
+        };
+        img.onerror=reject; img.src=rd.result;
+      };
+      rd.onerror=reject; rd.readAsDataURL(file);
+    });
+  }
+
+  function collect(){
+    return {
+      fecha:val('fecha'), horaInicio:val('horaInicio'), horaSalida:val('horaSalida'), idRef:val('idRef'),
+      tipos:[...document.querySelectorAll('input[name="tipo"]:checked')].map(x=>x.value),
+      cliente:{nombre:val('clienteNombre'),representante:val('clienteRep'),telefono:val('clienteTel'),correo:val('clienteCorreo'),direccion:val('clienteDir')},
+      equipo:{marcaEvap:val('marcaEvap'),modeloEvap:val('modeloEvap'),serieEvap:val('serieEvap'),ubicacionCond:val('ubiCond'),marcaCond:val('marcaCond'),modeloCond:val('modeloCond'),serieCond:val('serieCond'),capacidad:val('capacidad'),refrigerante:val('refrigerante'),cantidadRef:val('cantRef'),bomba:val('bomba')},
+      mediciones:{L1A:val('L1A'),L2A:val('L2A'),L3A:val('L3A'),PlacaA:val('PlacaA'),PAlta:val('PAlta'),PBaja:val('PBaja'),TSum:val('TSum'),TRet:val('TRet'),V12:val('V12'),V23:val('V23'),V13:val('V13')},
+      servicio:val('servicioRealizado'), observaciones:val('observaciones'),
+      satisfaccion:document.querySelector('input[name="satisfaccion"]:checked')?.value||''
+    };
+  }
+
+  async function guardar(){
+    const estado=$('estado');
+    if(GAS_URL.includes('PEGAR_AQUI')){estado.textContent='Falta configurar GAS_URL.';return}
+    if(!val('clienteNombre')||!val('servicioRealizado')){estado.textContent='Completa Cliente y Servicio realizado.';return}
+    if(!val('pin')){estado.textContent='Ingresa el PIN de guardado.';return}
+    try{
+      $('guardar').disabled=true; estado.textContent='Preparando fotografías...';
+      const fotos=[];
+      for(const f of $('fotos').files) fotos.push({name:f.name,dataUrl:await toDataURL(f)});
+      estado.textContent='Guardando...';
+      const body={
+        action:'save',
+        pin:val('pin'),
+        data:collect(),
+        fotos,
+        firmaTec:$('firmaTec').toDataURL('image/png'),
+        firmaCli:$('firmaCli').toDataURL('image/png')
+      };
+      const r=await fetch(GAS_URL,{method:'POST',body:JSON.stringify(body)});
+      const out=await r.json();
+      if(!out.ok) throw new Error(out.message||'No se pudo guardar');
+      $('boletaNumero').textContent=out.numero;
+      estado.textContent='Guardado correctamente. Boleta '+out.numero;
+    }catch(e){estado.textContent='Error: '+e.message}
+    finally{$('guardar').disabled=false}
+  }
+  $('guardar').addEventListener('click',guardar);
+
+  $('nueva').addEventListener('click',()=>{
+    if(!confirm('¿Limpiar el formulario para una nueva boleta?')) return;
+    document.querySelectorAll('input:not([type="button"]),textarea').forEach(x=>{
+      if(x.type==='checkbox'||x.type==='radio')x.checked=false; else x.value='';
+    });
+    document.querySelectorAll('select').forEach(x=>x.selectedIndex=0);
+    $('fecha').value=new Date().toISOString().slice(0,10);
+    $('galeria').innerHTML=''; clearSig('firmaTec'); clearSig('firmaCli'); $('estado').textContent='';
+  });
+</script>
+</body>
+</html>
