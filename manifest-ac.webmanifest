@@ -1,10 +1,10 @@
 {
-  "id": "/usdatapower-boletas/ac",
+  "id": "/usdatapower-boletas/ac-app-v2",
   "name": "U.S. Data Power — Boleta A/C",
   "short_name": "Boleta A/C",
   "description": "Boleta de servicio técnico para aire acondicionado",
   "lang": "es",
-  "start_url": "/usdatapower-boletas/",
+  "start_url": "/usdatapower-boletas/ac.html",
   "scope": "/usdatapower-boletas/",
   "display": "standalone",
   "prefer_related_applications": false,
