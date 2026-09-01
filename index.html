@@ -172,6 +172,8 @@
       <section class="section">
         <h2>Firmas</h2>
         <div class="grid">
+          <div class="f6"><label>Nombre del técnico</label><input id="tecnicoNombre"></div>
+          <div class="f6"><label>Teléfono del técnico</label><input id="tecnicoTelefono" type="tel"></div>
           <div class="f6">
             <label>Firma del técnico</label>
             <div class="sig"><canvas id="firmaTec" width="700" height="220"></canvas><div class="sigbar no-print"><span></span><button class="light" type="button" onclick="clearSig('firmaTec')">Limpiar</button></div></div>
@@ -256,6 +258,7 @@
       fecha:val('fecha'), horaInicio:val('horaInicio'), horaSalida:val('horaSalida'), idRef:val('idRef'),
       tipos:[...document.querySelectorAll('input[name="tipo"]:checked')].map(x=>x.value),
       administrativo:{contrato:val('contrato'),contratacion:val('contratacion'),licitacion:val('licitacion'),ordenCompra:val('ordenCompra'),ordenServicio:val('idRef')},
+      tecnico:{nombre:val('tecnicoNombre'),telefono:val('tecnicoTelefono')},
       cliente:{nombre:val('clienteNombre'),representante:val('clienteRep'),telefono:val('clienteTel'),correo:val('clienteCorreo'),direccion:val('clienteDir')},
       equipo:{marcaEvap:val('marcaEvap'),modeloEvap:val('modeloEvap'),serieEvap:val('serieEvap'),ubicacionCond:val('ubiCond'),marcaCond:val('marcaCond'),modeloCond:val('modeloCond'),serieCond:val('serieCond'),capacidad:val('capacidad'),refrigerante:val('refrigerante'),cantidadRef:val('cantRef'),bomba:val('bomba')},
       mediciones:{L1A:val('L1A'),L2A:val('L2A'),L3A:val('L3A'),PlacaA:val('PlacaA'),PAlta:val('PAlta'),PBaja:val('PBaja'),TSum:val('TSum'),TRet:val('TRet'),V12:val('V12'),V23:val('V23'),V13:val('V13')},

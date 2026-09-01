@@ -641,6 +641,16 @@ Máximo 8 fotografías. Se acumulan, comprimen y pueden eliminarse individualmen
 <div class="content grid-2">
 
 <div>
+<label>Nombre del técnico</label>
+<input id="tecnicoNombre">
+</div>
+
+<div>
+<label>Teléfono del técnico</label>
+<input id="tecnicoTelefono" type="tel">
+</div>
+
+<div>
 <label>Firma del técnico</label>
 <canvas id="firmaTec" class="signature"></canvas>
 
@@ -1015,6 +1025,8 @@ async function guardar(){
           tiposSeleccionados(),
 
         administrativo:{contrato:valor('contrato'),contratacion:valor('contratacion'),licitacion:valor('licitacion'),ordenCompra:valor('ordenCompra'),ordenServicio:valor('idRef')},
+
+        tecnico:{nombre:valor('tecnicoNombre'),telefono:valor('tecnicoTelefono')},
 
         cliente:{
           nombre:
