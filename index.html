@@ -86,6 +86,10 @@
           <div class="f"><label>Hora inicio</label><input id="horaInicio" type="time"></div>
           <div class="f"><label>Hora salida</label><input id="horaSalida" type="time"></div>
           <div class="f"><label>Identificación de referencia</label><input id="idRef"></div>
+          <div class="f"><label>N.º contrato</label><input id="contrato"></div>
+          <div class="f"><label>N.º contratación</label><input id="contratacion"></div>
+          <div class="f"><label>N.º licitación</label><input id="licitacion"></div>
+          <div class="f"><label>N.º orden de compra</label><input id="ordenCompra"></div>
         </div>
       </section>
 
@@ -97,6 +101,7 @@
           <div class="f4"><label>Teléfono(s)</label><input id="clienteTel"></div>
           <div class="f4"><label>Correo</label><input id="clienteCorreo" type="email"></div>
           <div class="f4"><label>Dirección</label><input id="clienteDir"></div>
+          <div class="f6 no-print"><label><input id="enviarCorreo" type="checkbox"> Generar PDF y enviar al cliente al guardar</label></div>
         </div>
       </section>
 
@@ -148,7 +153,8 @@
 
       <section class="section">
         <h2>Fotografías</h2>
-        <input class="no-print" id="fotos" type="file" accept="image/*" capture="environment" multiple>
+        <input class="no-print" id="fotos" type="file" accept="image/*" multiple>
+        <p class="muted no-print">Máximo 8 fotografías acumulativas, con compresión automática. <strong id="contadorFotos">0 / 8</strong></p>
         <div id="galeria" class="gallery"></div>
       </section>
 
@@ -249,6 +255,7 @@
     return {
       fecha:val('fecha'), horaInicio:val('horaInicio'), horaSalida:val('horaSalida'), idRef:val('idRef'),
       tipos:[...document.querySelectorAll('input[name="tipo"]:checked')].map(x=>x.value),
+      administrativo:{contrato:val('contrato'),contratacion:val('contratacion'),licitacion:val('licitacion'),ordenCompra:val('ordenCompra'),ordenServicio:val('idRef')},
       cliente:{nombre:val('clienteNombre'),representante:val('clienteRep'),telefono:val('clienteTel'),correo:val('clienteCorreo'),direccion:val('clienteDir')},
       equipo:{marcaEvap:val('marcaEvap'),modeloEvap:val('modeloEvap'),serieEvap:val('serieEvap'),ubicacionCond:val('ubiCond'),marcaCond:val('marcaCond'),modeloCond:val('modeloCond'),serieCond:val('serieCond'),capacidad:val('capacidad'),refrigerante:val('refrigerante'),cantidadRef:val('cantRef'),bomba:val('bomba')},
       mediciones:{L1A:val('L1A'),L2A:val('L2A'),L3A:val('L3A'),PlacaA:val('PlacaA'),PAlta:val('PAlta'),PBaja:val('PBaja'),TSum:val('TSum'),TRet:val('TRet'),V12:val('V12'),V23:val('V23'),V13:val('V13')},
@@ -257,6 +264,12 @@
     };
   }
 
+  let fotosAcumuladas=[];
+  async function comprimirFoto(file){const img=await createImageBitmap(file),s=Math.min(1,1600/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext('2d').drawImage(img,0,0,c.width,c.height);return{name:file.name.replace(/\.[^.]+$/,'.jpg'),dataUrl:c.toDataURL('image/jpeg',.78)}}
+  function renderFotos(){ $('contadorFotos').textContent=fotosAcumuladas.length+' / 8'; $('galeria').innerHTML=fotosAcumuladas.map((f,i)=>'<div class="thumb"><img src="'+f.dataUrl+'"><button type="button" onclick="eliminarFoto('+i+')">Eliminar</button></div>').join('') }
+  function eliminarFoto(i){fotosAcumuladas.splice(i,1);renderFotos()}
+  $('fotos').addEventListener('change',async e=>{for(const f of Array.from(e.target.files).slice(0,8-fotosAcumuladas.length))fotosAcumuladas.push(await comprimirFoto(f));e.target.value='';renderFotos()});
+
   async function guardar(){
     const estado=$('estado');
     if(GAS_URL.includes('PEGAR_AQUI')){estado.textContent='Falta configurar GAS_URL.';return}
@@ -264,8 +277,7 @@
     if(!val('pin')){estado.textContent='Ingresa el PIN de guardado.';return}
     try{
       $('guardar').disabled=true; estado.textContent='Preparando fotografías...';
-      const fotos=[];
-      for(const f of $('fotos').files) fotos.push({name:f.name,dataUrl:await toDataURL(f)});
+      const fotos=fotosAcumuladas;
       estado.textContent='Guardando...';
       const body={
         action:'save',
@@ -273,7 +285,8 @@
         data:collect(),
         fotos,
         firmaTec:$('firmaTec').toDataURL('image/png'),
-        firmaCli:$('firmaCli').toDataURL('image/png')
+        firmaCli:$('firmaCli').toDataURL('image/png'),
+        email:{enviar:$('enviarCorreo').checked,destino:val('clienteCorreo')}
       };
       const r=await fetch(GAS_URL,{method:'POST',body:JSON.stringify(body)});
       const out=await r.json();
@@ -292,7 +305,7 @@
     });
     document.querySelectorAll('select').forEach(x=>x.selectedIndex=0);
     $('fecha').value=new Date().toISOString().slice(0,10);
-    $('galeria').innerHTML=''; clearSig('firmaTec'); clearSig('firmaCli'); $('estado').textContent='';
+    fotosAcumuladas=[]; renderFotos(); clearSig('firmaTec'); clearSig('firmaCli'); $('estado').textContent='';
   });
 </script>
 </body>
