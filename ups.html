@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#172033">
 <link rel="manifest" href="manifest-ups.webmanifest">
 <link rel="icon" href="icon-ups.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon-ups.svg">
+<link rel="apple-touch-icon" href="icon-ups-192.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -725,6 +725,8 @@ Limpiar
   Nueva boleta
 </button>
 
+<button class="primary" type="button" id="instalar" onclick="instalarBoleta()">Instalar Boleta UPS</button>
+
 </div>
 
 <div id="status" class="status"></div>
@@ -734,6 +736,10 @@ Limpiar
 
 <script>
 if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+let instalacionPendiente=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();instalacionPendiente=e});
+window.addEventListener('appinstalled',()=>{document.getElementById('instalar').hidden=true;instalacionPendiente=null});
+async function instalarBoleta(){if(instalacionPendiente){instalacionPendiente.prompt();await instalacionPendiente.userChoice;instalacionPendiente=null;return}alert('Si no aparece el aviso automático: en Android/Chrome abra el menú ⋮ y elija “Instalar aplicación”. En iPhone/iPad use Compartir y luego “Agregar a pantalla de inicio”.')}
 
 const GAS_URL =
 'https://script.google.com/macros/s/AKfycbwq6oLABIKyGEHWDPSluuYjEpz_t4bOZpEXAdTdDK3Hwh3mDNuyD3WWJvWGTSHSYkVaVg/exec';

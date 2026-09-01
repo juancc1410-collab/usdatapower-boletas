@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Boleta A/C" />
   <link rel="manifest" href="manifest-ac.webmanifest" />
   <link rel="icon" href="icon-ac.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="icon-ac.svg" />
+  <link rel="apple-touch-icon" href="icon-ac-192.png" />
   <title>U.S. Data Power – Boleta de Servicios Técnicos</title>
   <style>
     :root{
@@ -209,6 +209,7 @@
       <button class="primary" id="guardar">Guardar en Google Sheets</button>
       <button class="secondary" onclick="window.print()">Guardar / Imprimir PDF</button>
       <button class="light" id="nueva">Nueva boleta</button>
+      <button class="good" id="instalar" type="button" onclick="instalarBoleta()">Instalar Boleta A/C</button>
       <span id="estado" class="status"></span>
     </div>
   </div>
@@ -216,6 +217,10 @@
 
 <script>
   if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+  let instalacionPendiente=null;
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();instalacionPendiente=e});
+  window.addEventListener('appinstalled',()=>{$('instalar').hidden=true;instalacionPendiente=null});
+  async function instalarBoleta(){if(instalacionPendiente){instalacionPendiente.prompt();await instalacionPendiente.userChoice;instalacionPendiente=null;return}alert('Si no aparece el aviso automático: en Android/Chrome abra el menú ⋮ y elija “Instalar aplicación”. En iPhone/iPad use Compartir y luego “Agregar a pantalla de inicio”.')}
   
   const GAS_URL = 'https://script.google.com/macros/s/AKfycbwq6oLABIKyGEHWDPSluuYjEpz_t4bOZpEXAdTdDK3Hwh3mDNuyD3WWJvWGTSHSYkVaVg/exec';
 
