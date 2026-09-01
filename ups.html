@@ -738,10 +738,11 @@ Limpiar
 if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 let instalacionPendiente=null;
 const estaInstalada=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
-window.addEventListener('load',()=>{if(estaInstalada())document.getElementById('instalar').hidden=true});
+const recordarInstalacion=()=>{localStorage.setItem('boletaUPSInstalada','1');document.getElementById('instalar').hidden=true};
+window.addEventListener('load',()=>{if(estaInstalada())recordarInstalacion();else if(localStorage.getItem('boletaUPSInstalada')==='1')document.getElementById('instalar').hidden=true});
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();instalacionPendiente=e});
-window.addEventListener('appinstalled',()=>{document.getElementById('instalar').hidden=true;instalacionPendiente=null});
-async function instalarBoleta(){if(estaInstalada()){document.getElementById('instalar').hidden=true;return}if(instalacionPendiente){instalacionPendiente.prompt();await instalacionPendiente.userChoice;instalacionPendiente=null;return}alert('Si no aparece el aviso automático: en Android/Chrome abra el menú ⋮ y elija “Instalar aplicación”. En iPhone/iPad use Compartir y luego “Agregar a pantalla de inicio”.')}
+window.addEventListener('appinstalled',()=>{recordarInstalacion();instalacionPendiente=null});
+async function instalarBoleta(){if(estaInstalada()){recordarInstalacion();return}if(instalacionPendiente){instalacionPendiente.prompt();const eleccion=await instalacionPendiente.userChoice;if(eleccion.outcome==='accepted')recordarInstalacion();instalacionPendiente=null;return}alert('Si no aparece el aviso automático: en Android/Chrome abra el menú ⋮ y elija “Instalar aplicación”. En iPhone/iPad use Compartir y luego “Agregar a pantalla de inicio”.')}
 
 const GAS_URL =
 'https://script.google.com/macros/s/AKfycbwq6oLABIKyGEHWDPSluuYjEpz_t4bOZpEXAdTdDK3Hwh3mDNuyD3WWJvWGTSHSYkVaVg/exec';
