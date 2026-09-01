@@ -1,0 +1,13 @@
+{
+  "id": "/usdatapower-boletas/ups",
+  "name": "U.S. Data Power — Boleta UPS",
+  "short_name": "Boleta UPS",
+  "description": "Boleta de servicio técnico para sistemas UPS",
+  "lang": "es",
+  "start_url": "/usdatapower-boletas/ups.html",
+  "scope": "/usdatapower-boletas/",
+  "display": "standalone",
+  "background_color": "#eef2f6",
+  "theme_color": "#172033",
+  "icons": [{"src":"icon-ups.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

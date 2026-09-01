@@ -4,6 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Boleta A/C" />
+  <link rel="manifest" href="manifest-ac.webmanifest" />
+  <link rel="icon" href="icon-ac.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon-ac.svg" />
   <title>U.S. Data Power – Boleta de Servicios Técnicos</title>
   <style>
     :root{
@@ -209,6 +215,7 @@
 </div>
 
 <script>
+  if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
   
   const GAS_URL = 'https://script.google.com/macros/s/AKfycbwq6oLABIKyGEHWDPSluuYjEpz_t4bOZpEXAdTdDK3Hwh3mDNuyD3WWJvWGTSHSYkVaVg/exec';
 
